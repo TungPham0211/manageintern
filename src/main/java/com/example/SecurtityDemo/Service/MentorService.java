@@ -19,7 +19,7 @@ public class MentorService {
         return mentorRepository.findAll();
     }
 
-    public void addAnMentor(Mentor mentor){
+    public void addMentor(Mentor mentor){
         Optional<Mentor> mentorOptional = mentorRepository.findMentorByEmail(mentor.getEmail());
         if(mentorOptional.isPresent()){
             throw new IllegalStateException("email is taken!");
@@ -28,7 +28,7 @@ public class MentorService {
         System.out.println(mentor);
     }
 
-    public void deleteAnMentor(Long mentor_id){
+    public void deleteMentor(Long mentor_id){
         boolean exists = mentorRepository.existsById(mentor_id);
         if(!exists){
             throw new IllegalStateException("Mentor with ID :" + mentor_id + "doesn't exists");

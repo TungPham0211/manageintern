@@ -20,7 +20,7 @@ public class InternService {
         return internRepository.findAll();
     }
 
-    public void addAnIntern(Intern intern){
+    public void addIntern(Intern intern){
         Optional<Intern> internOptional = internRepository.findInternByEmail(intern.getEmail());
         if(internOptional.isPresent()){
             throw new IllegalStateException("email is taken!");
@@ -29,7 +29,7 @@ public class InternService {
         System.out.println(intern);
     }
 
-    public void deleteAnIntern(Long intern_id){
+    public void deleteIntern(Long intern_id){
         boolean exists = internRepository.existsById(intern_id);
         if(!exists){
             throw new IllegalStateException("intern with id " + intern_id + "doesn't exists");

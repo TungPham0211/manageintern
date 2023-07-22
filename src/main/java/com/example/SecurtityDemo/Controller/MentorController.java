@@ -26,12 +26,12 @@ public class MentorController {
     }
     @PostMapping
     public void addAnMentor(@RequestBody Mentor mentor){
-        mentorService.addAnMentor(mentor);
+        mentorService.addMentor(mentor);
     }
 
     @DeleteMapping(path ="{mentorID}")
     public void deleteAnMentor(@PathVariable Long mentorID){
-        mentorService.deleteAnMentor(mentorID);
+        mentorService.deleteMentor(mentorID);
     }
 
     @PutMapping(path ="{mentorID}")

@@ -23,14 +23,14 @@ public class InternController {
 
     @PostMapping
     public void addAnIntern(@RequestBody Intern intern){
-        internService.addAnIntern(intern);
+        internService.addIntern(intern);
     }
 
 
 
     @DeleteMapping(path = "{intern_id}")
     public void deleteAnIntern(@PathVariable Long intern_id){
-        internService.deleteAnIntern(intern_id);
+        internService.deleteIntern(intern_id);
     }
 
     @PutMapping(path = "{intern_id}")
