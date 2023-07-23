@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -22,24 +23,25 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 		SpringApplication.run(SecurtityDemoApplication.class, args);
 	}
 
+	List<Intern> internManaged = new ArrayList<>();
 
 	@Override
 	public void run(String... args) throws Exception {
 		Mentor LuongHuy = new Mentor(
-				1L,
+				1,
 				"Luong Huy",
 				22,
 				"Coding",
-				"LuongHuy@gmail.com","0123"
+				"LuongHuy@gmail.com", "0123"
 		);
 		Mentor KieuDung = new Mentor(
-				2L,
+				2,
 				"Kieu Dung",
 				25,
-				"System Design", "KieuDung@gmail.com","0132"
+				"System Design", "KieuDung@gmail.com", "0132"
 		);
 
-		mentorRepository.saveAll(List.of(LuongHuy , KieuDung));
+		mentorRepository.saveAll(List.of(LuongHuy, KieuDung));
 		Intern intern = new Intern(
 				1,
 				"PhamSonTung",
@@ -60,11 +62,11 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"08484582147",
 				KieuDung
 		);
-		internRepository.saveAll(List.of(intern , intern1));
-		Mentor MinhHung = new Mentor(3L,
+		internRepository.saveAll(List.of(intern, intern1));
+		Mentor MinhHung = new Mentor(3,
 				"Minh Hung",
 				22,
-				"FrontEnd", "HungVT7@gmail.com","0231"
+				"FrontEnd", "HungVT7@gmail.com", "0231"
 		);
 		Intern intern2 = new Intern(
 				3,
@@ -88,7 +90,7 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				MinhHung
 		);
 		mentorRepository.save(MinhHung);
-		internRepository.saveAll(List.of(intern2 , intern3));
+		internRepository.saveAll(List.of(intern2, intern3));
 
 	}
 }

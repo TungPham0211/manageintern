@@ -28,7 +28,7 @@ public class MentorService {
         System.out.println(mentor);
     }
 
-    public void deleteMentor(Long mentor_id){
+    public void deleteMentor(int mentor_id){
         boolean exists = mentorRepository.existsById(mentor_id);
         if(!exists){
             throw new IllegalStateException("Mentor with ID :" + mentor_id + "doesn't exists");
@@ -38,7 +38,7 @@ public class MentorService {
     }
 
     @Transactional
-    public void updateMentor(Long mentor_id , String name , String email , String phone_number){
+    public void updateMentor(int mentor_id , String name , String email , String phone_number){
         Mentor mentor = mentorRepository.findById(mentor_id)
                 .orElseThrow(() -> new IllegalStateException("Mentor with ID :" + mentor_id + "doesn't exists"));
         if(name != null && name.length() > 0 && !Objects.equals(name , mentor.getMentor_name())){
@@ -56,10 +56,4 @@ public class MentorService {
             mentor.setPhoneNumber(phone_number);
         }
     }
-
-    public Optional<Mentor> getMentorbyID(Long mentor_id){
-        return mentorRepository.findById(mentor_id);
-    }
-
-
 }

@@ -11,7 +11,7 @@ public class Mentor {
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY )
-    private Long mentor_id;
+    private int mentor_id;
     private String mentor_name;
     private int age;
     private String groupName_manage;
@@ -24,7 +24,7 @@ public class Mentor {
     public Mentor() {
     }
 
-    public Mentor(Long mentor_id, String mentor_name, int age, String groupName_manage, String email, String phoneNumber) {
+    public Mentor(int mentor_id, String mentor_name, int age, String groupName_manage, String email, String phoneNumber) {
         this.mentor_id = mentor_id;
         this.mentor_name = mentor_name;
         this.age = age;
@@ -45,11 +45,11 @@ public class Mentor {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getMentor_id() {
+    public int getMentor_id() {
         return mentor_id;
     }
 
-    public void setMentor_id(Long mentor_id) {
+    public void setMentor_id(int mentor_id) {
         this.mentor_id = mentor_id;
     }
 

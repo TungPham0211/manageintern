@@ -29,12 +29,12 @@ public class InternController {
 
 
     @DeleteMapping(path = "{intern_id}")
-    public void deleteAnIntern(@PathVariable Long intern_id){
+    public void deleteAnIntern(@PathVariable int intern_id){
         internService.deleteIntern(intern_id);
     }
 
     @PutMapping(path = "{intern_id}")
-    public void updateAnIntern(@PathVariable Long intern_id,
+    public void updateAnIntern(@PathVariable int intern_id,
                                @RequestParam String name ,
                                @RequestParam String email ,
                                @RequestParam String phone_number){

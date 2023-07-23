@@ -20,6 +20,7 @@ public class InternService {
         return internRepository.findAll();
     }
 
+
     public void addIntern(Intern intern){
         Optional<Intern> internOptional = internRepository.findInternByEmail(intern.getEmail());
         if(internOptional.isPresent()){
@@ -29,7 +30,7 @@ public class InternService {
         System.out.println(intern);
     }
 
-    public void deleteIntern(Long intern_id){
+    public void deleteIntern(int intern_id){
         boolean exists = internRepository.existsById(intern_id);
         if(!exists){
             throw new IllegalStateException("intern with id " + intern_id + "doesn't exists");
@@ -38,7 +39,7 @@ public class InternService {
         }
     }
 
-    public void updateIntern(Long intern_id , String name , String email , String phone_number){
+    public void updateIntern(int intern_id , String name , String email , String phone_number){
         Intern intern = internRepository.findById(intern_id)
                 .orElseThrow(() -> new IllegalStateException("Mentor with ID :" + intern_id + "doesn't exists"));
         if(name != null && name.length() > 0 && !Objects.equals(name , intern.getIntern_name())){

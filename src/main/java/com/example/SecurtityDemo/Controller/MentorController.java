@@ -20,22 +20,19 @@ public class MentorController {
         return mentorService.getAllMentor();
     }
 
-    @GetMapping(path ="{mentor_id}")
-    public Optional<Mentor> getMentorByID(@PathVariable Long mentor_id){
-        return mentorService.getMentorbyID(mentor_id);
-    }
+
     @PostMapping
     public void addAnMentor(@RequestBody Mentor mentor){
         mentorService.addMentor(mentor);
     }
 
     @DeleteMapping(path ="{mentorID}")
-    public void deleteAnMentor(@PathVariable Long mentorID){
+    public void deleteAnMentor(@PathVariable int mentorID){
         mentorService.deleteMentor(mentorID);
     }
 
     @PutMapping(path ="{mentorID}")
-    public void updateMentor(@PathVariable Long mentor_id ,
+    public void updateMentor(@PathVariable int mentor_id ,
                                @RequestParam String name ,
                                @RequestParam String email ,
                                @RequestParam String phone_number){

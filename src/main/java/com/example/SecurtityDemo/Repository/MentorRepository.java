@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface MentorRepository extends JpaRepository<Mentor, Long> {
+public interface MentorRepository extends JpaRepository<Mentor, Integer> {
     Optional<Mentor> findMentorByEmail(String email);
 }
