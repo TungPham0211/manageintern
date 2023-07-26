@@ -3,6 +3,7 @@ package com.example.SecurtityDemo.Service;
 
 import com.example.SecurtityDemo.Entity.Intern;
 import com.example.SecurtityDemo.Repository.InternRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,13 +40,13 @@ public class InternService {
         }
     }
 
+    @Transactional
     public void updateIntern(int intern_id , String name , String email , String phone_number){
         Intern intern = internRepository.findById(intern_id)
                 .orElseThrow(() -> new IllegalStateException("Mentor with ID :" + intern_id + "doesn't exists"));
         if(name != null && name.length() > 0 && !Objects.equals(name , intern.getIntern_name())){
             intern.setIntern_name(name);
         }
-
         Optional<Intern> internOptional = internRepository.findInternByEmail(email);
         if(internOptional.isPresent()){
             throw new IllegalStateException("email is taken!");
@@ -56,6 +57,8 @@ public class InternService {
         if(phone_number != null && phone_number.length() > 0 && !Objects.equals(phone_number , intern.getPhone_number())){
             intern.setPhone_number(phone_number);
         }
+
     }
+
 
 }

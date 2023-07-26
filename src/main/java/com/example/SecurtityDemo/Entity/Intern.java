@@ -42,7 +42,16 @@ public class Intern {
         this.email = email;
         this.phone_number = phone_number;
         this.mentor = mentor;
+    }
 
+    public Intern(int intern_id, String intern_name, int age, String school_name, String group_name, String email, String phone_number) {
+        this.intern_id = intern_id;
+        this.intern_name = intern_name;
+        this.age = age;
+        this.school_name = school_name;
+        this.group_name = group_name;
+        this.email = email;
+        this.phone_number = phone_number;
     }
 
     public int getIntern_id() {

@@ -29,15 +29,15 @@ public class InternController {
 
 
     @DeleteMapping(path = "{intern_id}")
-    public void deleteAnIntern(@PathVariable int intern_id){
+    public void deleteIntern(@PathVariable int intern_id){
         internService.deleteIntern(intern_id);
     }
 
     @PutMapping(path = "{intern_id}")
-    public void updateAnIntern(@PathVariable int intern_id,
-                               @RequestParam String name ,
-                               @RequestParam String email ,
-                               @RequestParam String phone_number){
+    public void updateInternName(@PathVariable ("intern_id")int intern_id,
+                                 @RequestParam (required = false)String name ,
+                                 @RequestParam (required = false)String email ,
+                                 @RequestParam (required = false) String phone_number){
         internService.updateIntern(intern_id , name , email , phone_number);
     }
 }

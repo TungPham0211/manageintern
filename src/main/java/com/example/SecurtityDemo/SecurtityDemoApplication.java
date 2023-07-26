@@ -27,6 +27,7 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		Mentor LuongHuy = new Mentor(
 				1,
 				"Luong Huy",
@@ -59,10 +60,10 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"PTIT",
 				"System Design",
 				"CeoDeTam@gmail.com",
-				"08484582147",
-				KieuDung
+				"08484582147"
 		);
-		internRepository.saveAll(List.of(intern, intern1));
+		internRepository.saveAll(List.of(intern1));
+
 		Mentor MinhHung = new Mentor(3,
 				"Minh Hung",
 				22,
@@ -75,8 +76,7 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"PTIT",
 				"FrontEnd",
 				"uchihaitachi@gmail.com",
-				"0579645810",
-				MinhHung
+				"0579645810"
 		);
 
 		Intern intern3 = new Intern(
@@ -86,8 +86,7 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"PTIT",
 				"FrontEnd",
 				"Helloworld@gmail.com",
-				"07944581236",
-				MinhHung
+				"07944581236"
 		);
 		mentorRepository.save(MinhHung);
 		internRepository.saveAll(List.of(intern2, intern3));

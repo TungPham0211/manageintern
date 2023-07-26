@@ -18,13 +18,14 @@ public class Mentor {
     private String email;
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     protected List<Intern> internManaged ;
 
     public Mentor() {
     }
 
-    public Mentor(int mentor_id, String mentor_name, int age, String groupName_manage, String email, String phoneNumber) {
+    public Mentor(int mentor_id, String mentor_name, int age, String groupName_manage, String email,
+                  String phoneNumber ) {
         this.mentor_id = mentor_id;
         this.mentor_name = mentor_name;
         this.age = age;
@@ -32,6 +33,8 @@ public class Mentor {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
+
 
     public Mentor(String mentor_name,
                   int age,
