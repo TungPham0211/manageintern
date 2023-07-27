@@ -88,7 +88,10 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"07944581236"
 		);
 
-
+		LuongHuy.addIntern(intern);
+		KieuDung.addIntern(intern1);
+		MinhHung.addIntern(intern2);
+		MinhHung.addIntern(intern3);
 		mentorRepository.save(MinhHung);
 		internRepository.saveAll(List.of(intern, intern1));
 		internRepository.saveAll(List.of(intern2, intern3));

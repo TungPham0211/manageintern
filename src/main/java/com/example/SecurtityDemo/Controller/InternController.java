@@ -2,6 +2,7 @@ package com.example.SecurtityDemo.Controller;
 
 
 import com.example.SecurtityDemo.Entity.Intern;
+import com.example.SecurtityDemo.Entity.Mentor;
 import com.example.SecurtityDemo.Service.InternService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,6 +27,11 @@ public class InternController {
         internService.addIntern(intern);
     }
 
+    @PostMapping("{mentor_id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void addInternManaged(@RequestBody Intern intern , @PathVariable int mentor_id){
+        internService.addInternManaged(intern , mentor_id);
+    }
 
 
     @DeleteMapping(path = "{intern_id}")

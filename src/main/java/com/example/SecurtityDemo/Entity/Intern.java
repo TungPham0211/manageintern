@@ -1,6 +1,7 @@
 package com.example.SecurtityDemo.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +21,7 @@ public class Intern {
 
     @ManyToOne(cascade = {CascadeType.PERSIST , CascadeType.MERGE
             ,CascadeType.DETACH , CascadeType.REFRESH})
+    @JsonBackReference
     @JoinColumn(name = "mentor_id")
     private Mentor mentor;
 
@@ -27,7 +29,10 @@ public class Intern {
     public Intern() {
     }
 
-
+    public Intern(int intern_id, String intern_name) {
+        this.intern_id = intern_id;
+        this.intern_name = intern_name;
+    }
 
     public Intern(int intern_id, String intern_name, int age, String school_name, String group_name, String email, String phone_number) {
         this.intern_id = intern_id;
@@ -99,6 +104,7 @@ public class Intern {
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
+
 
     @Override
     public String toString() {

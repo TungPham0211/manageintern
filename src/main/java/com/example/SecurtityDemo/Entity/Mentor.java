@@ -1,5 +1,6 @@
 package com.example.SecurtityDemo.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.*;
 
@@ -22,6 +23,7 @@ public class Mentor {
 
     @OneToMany (mappedBy = "mentor" , cascade = {CascadeType.PERSIST , CascadeType.MERGE
             ,CascadeType.DETACH , CascadeType.REFRESH})
+    @JsonManagedReference
     protected List<Intern> internManaged ;
 
     public Mentor() {
@@ -37,7 +39,10 @@ public class Mentor {
         this.phoneNumber = phoneNumber;
     }
 
-
+    public Mentor(int mentor_id, String mentor_name) {
+        this.mentor_id = mentor_id;
+        this.mentor_name = mentor_name;
+    }
 
     public Mentor(String mentor_name,
                   int age,

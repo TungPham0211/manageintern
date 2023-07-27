@@ -11,14 +11,7 @@ import java.util.List;
 public class Group {
 
     @Id
-    @SequenceGenerator(
-            name = "Group_sequence",
-            sequenceName = "Group_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue
-            (strategy = GenerationType.SEQUENCE,
-                    generator = "Group_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int group_id;
     private String group_name;

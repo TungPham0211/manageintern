@@ -2,11 +2,14 @@ package com.example.SecurtityDemo.Service;
 
 
 import com.example.SecurtityDemo.Entity.Intern;
+import com.example.SecurtityDemo.Entity.Mentor;
 import com.example.SecurtityDemo.Repository.InternRepository;
+import com.example.SecurtityDemo.Repository.MentorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,6 +19,9 @@ public class InternService {
 
     @Autowired
     InternRepository internRepository;
+
+    @Autowired
+    MentorRepository mentorRepository;
 
     public List<Intern> getAllIntern(){
         return internRepository.findAll();
@@ -31,6 +37,18 @@ public class InternService {
         System.out.println(intern);
     }
 
+    public void addInternManaged(Intern intern , int mentor_id){
+        Mentor mentor = mentorRepository.findById(mentor_id)
+                .orElseThrow(() -> new IllegalStateException("Mentor with ID :" + mentor_id + "doesn't exists"));
+        List<Intern> internManaged = new ArrayList<>();
+        internManaged.add(intern);
+
+        mentor.setInternManaged(internManaged);
+        intern.setMentor(mentor);
+        internRepository.save(intern);
+    }
+
+
     public void deleteIntern(int intern_id){
         boolean exists = internRepository.existsById(intern_id);
         if(!exists){
@@ -43,7 +61,7 @@ public class InternService {
     @Transactional
     public void updateIntern(int intern_id , String name , String email , String phone_number){
         Intern intern = internRepository.findById(intern_id)
-                .orElseThrow(() -> new IllegalStateException("Mentor with ID :" + intern_id + "doesn't exists"));
+                .orElseThrow(() -> new IllegalStateException("Intern with ID :" + intern_id + "doesn't exists"));
         if(name != null && name.length() > 0 && !Objects.equals(name , intern.getIntern_name())){
             intern.setIntern_name(name);
         }
