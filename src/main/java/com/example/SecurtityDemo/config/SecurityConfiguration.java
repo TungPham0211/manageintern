@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/**")
                 .permitAll()
-                .requestMatchers("/demo").hasAnyAuthority(String.valueOf(Role.USER))
+                .requestMatchers("/api/v1/intern/**" , "/api/v2/mentor/admin").hasAnyAuthority(String.valueOf(Role.ADMIN))
                 .and()
                 .csrf().disable()
                 .authorizeHttpRequests()

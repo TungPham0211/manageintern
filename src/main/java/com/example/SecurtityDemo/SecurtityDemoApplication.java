@@ -50,8 +50,7 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"PTIT",
 				"Coding",
 				"hokagedetu@gmail.com",
-				"0985176796",
-				LuongHuy
+				"0985176796"
 		);
 		Intern intern1 = new Intern(
 				2,
@@ -62,7 +61,7 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"CeoDeTam@gmail.com",
 				"08484582147"
 		);
-		internRepository.saveAll(List.of(intern1));
+
 
 		Mentor MinhHung = new Mentor(3,
 				"Minh Hung",
@@ -88,7 +87,10 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"Helloworld@gmail.com",
 				"07944581236"
 		);
+
+
 		mentorRepository.save(MinhHung);
+		internRepository.saveAll(List.of(intern, intern1));
 		internRepository.saveAll(List.of(intern2, intern3));
 
 	}

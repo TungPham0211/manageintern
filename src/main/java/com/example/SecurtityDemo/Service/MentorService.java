@@ -1,5 +1,6 @@
 package com.example.SecurtityDemo.Service;
 
+import com.example.SecurtityDemo.Entity.Intern;
 import com.example.SecurtityDemo.Entity.Mentor;
 import com.example.SecurtityDemo.Repository.MentorRepository;
 import jakarta.transaction.Transactional;
@@ -18,6 +19,8 @@ public class MentorService {
     public List<Mentor> getAllMentor(){
         return mentorRepository.findAll();
     }
+
+
 
     public void addMentor(Mentor mentor){
         Optional<Mentor> mentorOptional = mentorRepository.findMentorByEmail(mentor.getEmail());

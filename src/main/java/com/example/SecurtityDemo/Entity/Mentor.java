@@ -11,14 +11,17 @@ public class Mentor {
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY )
+    @Column (name = "mentor_id")
     private int mentor_id;
+    @Column(name = "mentor_name")
     private String mentor_name;
     private int age;
     private String groupName_manage;
     private String email;
     private String phoneNumber;
 
-    @OneToMany
+    @OneToMany (mappedBy = "mentor" , cascade = {CascadeType.PERSIST , CascadeType.MERGE
+            ,CascadeType.DETACH , CascadeType.REFRESH})
     protected List<Intern> internManaged ;
 
     public Mentor() {
@@ -96,6 +99,13 @@ public class Mentor {
         this.phoneNumber = phoneNumber;
     }
 
+    public List<Intern> getInternManaged() {
+        return internManaged;
+    }
+
+    public void setInternManaged(List<Intern> internManaged) {
+        this.internManaged = internManaged;
+    }
 
     @Override
     public String toString() {
@@ -108,4 +118,15 @@ public class Mentor {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
+
+
+    public void addIntern(Intern tempIntern){
+        if(internManaged == null){
+            internManaged = new ArrayList<>();
+        }
+
+        internManaged.add(tempIntern);
+        tempIntern.setMentor(this);
+    }
+
 }

@@ -29,11 +29,13 @@ public class InternController {
 
 
     @DeleteMapping(path = "{intern_id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteIntern(@PathVariable int intern_id){
         internService.deleteIntern(intern_id);
     }
 
     @PutMapping(path = "{intern_id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void updateInternName(@PathVariable ("intern_id")int intern_id,
                                  @RequestParam (required = false)String name ,
                                  @RequestParam (required = false)String email ,
