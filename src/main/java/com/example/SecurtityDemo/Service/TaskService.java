@@ -3,6 +3,7 @@ package com.example.SecurtityDemo.Service;
 
 import com.example.SecurtityDemo.Entity.Task;
 import com.example.SecurtityDemo.Repository.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -12,7 +13,7 @@ import java.util.Objects;
 @Component
 public class TaskService {
 
-
+    @Autowired
     private final TaskRepository taskRepository;
 
 

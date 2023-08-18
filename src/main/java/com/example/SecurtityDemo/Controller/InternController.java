@@ -2,7 +2,6 @@ package com.example.SecurtityDemo.Controller;
 
 
 import com.example.SecurtityDemo.Entity.Intern;
-import com.example.SecurtityDemo.Entity.Mentor;
 import com.example.SecurtityDemo.Service.InternService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,6 +30,12 @@ public class InternController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public void addInternManaged(@RequestBody Intern intern , @PathVariable int mentor_id){
         internService.addInternManaged(intern , mentor_id);
+    }
+
+    @PostMapping("{group_id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void addInternGroup(@RequestBody Intern intern , @PathVariable int group_id){
+        internService.addInternGroup(intern , group_id);
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.SecurtityDemo.auth;
 
 
+import com.example.SecurtityDemo.Entity.PasswordResetToken;
 import com.example.SecurtityDemo.Repository.UserRepository;
 import com.example.SecurtityDemo.Entity.Role;
 import com.example.SecurtityDemo.Entity.User;
@@ -20,6 +21,8 @@ public class AuthenticateService {
     private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
 
+
+    private PasswordResetToken passwordResetToken;
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .first_name(request.getFirst_name())
@@ -49,8 +52,6 @@ public class AuthenticateService {
                 .token(jwtToken)
                 .build();
     }
-
-
 
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

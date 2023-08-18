@@ -1,8 +1,10 @@
 package com.example.SecurtityDemo.Service;
 
 
+import com.example.SecurtityDemo.Entity.Group;
 import com.example.SecurtityDemo.Entity.Intern;
 import com.example.SecurtityDemo.Entity.Mentor;
+import com.example.SecurtityDemo.Repository.GroupRepository;
 import com.example.SecurtityDemo.Repository.InternRepository;
 import com.example.SecurtityDemo.Repository.MentorRepository;
 import jakarta.transaction.Transactional;
@@ -22,6 +24,9 @@ public class InternService {
 
     @Autowired
     MentorRepository mentorRepository;
+
+    @Autowired
+    GroupRepository groupRepository;
 
     public List<Intern> getAllIntern(){
         return internRepository.findAll();
@@ -45,6 +50,18 @@ public class InternService {
 
         mentor.setInternManaged(internManaged);
         intern.setMentor(mentor);
+        internRepository.save(intern);
+    }
+
+
+    public void addInternGroup(Intern intern , int group_id){
+        Group group = groupRepository.findById(group_id)
+                .orElseThrow(() -> new IllegalStateException("Group with ID :" + group_id + "doesn't exists"));
+        List<Intern> internGroup = new ArrayList<>();
+        internGroup.add(intern);
+
+        group.setInternGroup(internGroup);
+        intern.setGroup(group);
         internRepository.save(intern);
     }
 

@@ -26,15 +26,19 @@ public class Mentor {
     @JsonManagedReference
     protected List<Intern> internManaged ;
 
+    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.MERGE
+            ,CascadeType.DETACH , CascadeType.REFRESH})
+    @JoinColumn(name = "group_id")
+    private Group group;
+
     public Mentor() {
     }
 
-    public Mentor(int mentor_id, String mentor_name, int age, String groupName_manage, String email,
+    public Mentor(int mentor_id, String mentor_name, int age, String email,
                   String phoneNumber ) {
         this.mentor_id = mentor_id;
         this.mentor_name = mentor_name;
         this.age = age;
-        this.groupName_manage = groupName_manage;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
@@ -112,13 +116,21 @@ public class Mentor {
         this.internManaged = internManaged;
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     @Override
     public String toString() {
         return "Mentor{" +
                 "mentor_id=" + mentor_id +
-                ", mentor_name='" + mentor_name + '\'' +
+                ", mentor_name=" + mentor_name + '\'' +
                 ", age=" + age +
-                ", groupName_manage='" + groupName_manage + '\'' +
+                ", groupName_manage=" + groupName_manage + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
@@ -133,5 +145,6 @@ public class Mentor {
         internManaged.add(tempIntern);
         tempIntern.setMentor(this);
     }
+
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class GroupService {
 
-
+    @Autowired
     private final GroupRepository groupRepository;
 
 

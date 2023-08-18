@@ -1,5 +1,6 @@
 package com.example.SecurtityDemo;
 
+import com.example.SecurtityDemo.Entity.Group;
 import com.example.SecurtityDemo.Entity.Intern;
 import com.example.SecurtityDemo.Entity.Mentor;
 import com.example.SecurtityDemo.Repository.InternRepository;
@@ -23,7 +24,7 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 		SpringApplication.run(SecurtityDemoApplication.class, args);
 	}
 
-	List<Intern> internManaged = new ArrayList<>();
+
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -32,14 +33,12 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				1,
 				"Luong Huy",
 				22,
-				"Coding",
 				"LuongHuy@gmail.com", "0123"
 		);
 		Mentor KieuDung = new Mentor(
 				2,
 				"Kieu Dung",
-				25,
-				"System Design", "KieuDung@gmail.com", "0132"
+				25, "KieuDung@gmail.com", "0132"
 		);
 
 		mentorRepository.saveAll(List.of(LuongHuy, KieuDung));
@@ -48,7 +47,6 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"PhamSonTung",
 				22,
 				"PTIT",
-				"Coding",
 				"hokagedetu@gmail.com",
 				"0985176796"
 		);
@@ -57,7 +55,6 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"Fita",
 				22,
 				"PTIT",
-				"System Design",
 				"CeoDeTam@gmail.com",
 				"08484582147"
 		);
@@ -65,15 +62,13 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 
 		Mentor MinhHung = new Mentor(3,
 				"Minh Hung",
-				22,
-				"FrontEnd", "HungVT7@gmail.com", "0231"
+				22, "HungVT7@gmail.com", "0231"
 		);
 		Intern intern2 = new Intern(
 				3,
 				"Far Away",
 				22,
 				"PTIT",
-				"FrontEnd",
 				"uchihaitachi@gmail.com",
 				"0579645810"
 		);
@@ -83,10 +78,27 @@ public class SecurtityDemoApplication implements CommandLineRunner {
 				"FarJAway",
 				23,
 				"PTIT",
-				"FrontEnd",
 				"Helloworld@gmail.com",
 				"07944581236"
 		);
+
+		Group FrontEnd = new Group(
+				1,
+				"FrontEnd",
+				"Minh Hung"
+		);
+		Group BackEnd = new Group(
+				2,
+				"BackEnd",
+				"Luong Huy"
+		);
+
+		FrontEnd.addIntern(intern1);
+		FrontEnd.addIntern(intern);
+		BackEnd.addIntern(intern2);
+		BackEnd.addIntern(intern3);
+
+
 
 		LuongHuy.addIntern(intern);
 		KieuDung.addIntern(intern1);

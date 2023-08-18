@@ -15,7 +15,6 @@ public class Intern {
     private String intern_name;
     private int age;
     private String school_name;
-    private String group_name;
     private String email;
     private String phone_number;
 
@@ -26,6 +25,12 @@ public class Intern {
     private Mentor mentor;
 
 
+    @ManyToOne(cascade = {CascadeType.PERSIST , CascadeType.MERGE
+            ,CascadeType.DETACH , CascadeType.REFRESH})
+    @JsonBackReference
+    @JoinColumn(name = "group_id")
+    private Group group;
+
     public Intern() {
     }
 
@@ -34,12 +39,11 @@ public class Intern {
         this.intern_name = intern_name;
     }
 
-    public Intern(int intern_id, String intern_name, int age, String school_name, String group_name, String email, String phone_number) {
+    public Intern(int intern_id, String intern_name, int age, String school_name, String email, String phone_number) {
         this.intern_id = intern_id;
         this.intern_name = intern_name;
         this.age = age;
         this.school_name = school_name;
-        this.group_name = group_name;
         this.email = email;
         this.phone_number = phone_number;
     }
@@ -81,13 +85,6 @@ public class Intern {
         this.school_name = school_name;
     }
 
-    public String getGroup_name() {
-        return group_name;
-    }
-
-    public void setGroup_name(String group_name) {
-        this.group_name = group_name;
-    }
 
     public String getEmail() {
         return email;
@@ -105,6 +102,13 @@ public class Intern {
         this.phone_number = phone_number;
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
     @Override
     public String toString() {
@@ -113,10 +117,8 @@ public class Intern {
                 ", intern_name='" + intern_name + '\'' +
                 ", age=" + age +
                 ", school_name='" + school_name + '\'' +
-                ", group_name='" + group_name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone_number='" + phone_number + '\'' +
-                ", mentor=" + mentor +
                 '}';
     }
 }

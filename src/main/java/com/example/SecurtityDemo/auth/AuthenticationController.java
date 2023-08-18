@@ -1,12 +1,14 @@
 package com.example.SecurtityDemo.auth;
 
 
+import com.example.SecurtityDemo.Service.UserService;
+import com.example.SecurtityDemo.config.PasswordDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Locale;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/auth")
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     private final AuthenticateService service;
+
+    private final UserService userService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
@@ -40,5 +44,21 @@ public class AuthenticationController {
 
     }
 
+    @PostMapping("/forgot-password")
+    public String forgotPassword(@RequestParam String email) {
 
+        String response = userService.forgotPassword(email);
+
+        if (!response.startsWith("Invalid")) {
+            response = "http://localhost:8080/api/v1/auth/reset-password?token=" + response;
+        }
+        return response;
+    }
+
+    @PutMapping("/reset-password")
+    public String resetPassword(@RequestParam String token,
+                                @RequestParam String password) {
+
+        return userService.resetPassword(token, password);
+    }
 }
